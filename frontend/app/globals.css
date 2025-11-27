@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@layer utilities {
+  /* コードの前後に勝手につくバッククォート（`）を消す */
+  .prose :where(code):not(:where([class~="not-prose"] *))::before {
+    content: none !important;
+  }
+  .prose :where(code):not(:where([class~="not-prose"] *))::after {
+    content: none !important;
+  }
+
+  /* コード自体のスタイルをリセット（背景色透明、文字色継承） */
+  .prose :where(code):not(:where([class~="not-prose"] *)) {
+    background-color: transparent !important;
+    color: inherit !important;
+    font-weight: normal !important;
+    padding: 0 !important;
+  }
+
+  /* 念のため pre（コードブロック全体）の背景も整える */
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    background-color: #1f2937 !important; /* ダークグレー */
+    color: #e5e7eb !important;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    overflow-x: auto;
+  }
+}
