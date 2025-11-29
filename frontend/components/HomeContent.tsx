@@ -8,7 +8,6 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogCard from '@/components/BlogCard';
-import ParticleBackground from '@/components/Particle';
 
 // --- Types & Constants ---
 const WP_API_URL = "https://cms.ad-logos.com/blog/wp-json/wp/v2/posts?_embed&per_page=3";
@@ -122,7 +121,6 @@ const HomeContent = () => {
   return (
     <div className="bg-black min-h-screen text-white selection:bg-blue-500 selection:text-white relative">
       <div className="fixed inset-0 z-0">
-        <ParticleBackground />
       </div>
 
       <div className="relative z-10 pointer-events-none">
