@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ParticleBackground from '@/components/Particle';
 import BlogCard from '@/components/BlogCard';
 
 // 取得する記事数
@@ -64,7 +63,6 @@ export default async function BlogPage() {
       
       {/* 背景レイヤー */}
       <div className="fixed inset-0 z-0">
-        <ParticleBackground disableInteraction={true} />
         <div className="absolute inset-0 bg-black/60 pointer-events-none" /> 
       </div>
 

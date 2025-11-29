@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Folder, User } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ParticleBackground from '@/components/Particle';
+
 
 
 // --- Configuration ---
@@ -139,7 +139,6 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="fixed inset-0 z-0">
-        <ParticleBackground disableInteraction={true} />
         <div className="absolute inset-0 bg-black/70 pointer-events-none" />
       </div>
 

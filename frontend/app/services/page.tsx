@@ -6,7 +6,6 @@ import {
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 // パーティクルコンポーネントをインポート
-import ParticleBackground from '@/components/Particle';
 import Link from 'next/link';
 // --- Types ---
 interface SectionProps {
@@ -134,7 +133,6 @@ const ServicePage = () => {
       
       {/* ★ 背景レイヤー (固定) */}
       <div className="fixed inset-0 z-0">
-        <ParticleBackground disableInteraction={true} />
         <div className="absolute inset-0 bg-black/50 pointer-events-none" />
       </div>
 
