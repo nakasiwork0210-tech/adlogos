@@ -9,10 +9,10 @@ const Footer = () => (
         
         {/* --- 左側エリア: 会社情報 (2カラム分使用) --- */}
         <div className="md:col-span-2">
-          <h2 className="text-3xl font-bold mb-6">ad-logos</h2>
+          <h2 className="text-3xl font-bold mb-6">FutureCast</h2>
           <p className="text-gray-400 max-w-sm mb-6 leading-relaxed">
-            アドロゴス<br />
-            〒113-0032 東京都文京区弥生2-7-11-303
+            合同会社 FutureCast<br />
+            〒106-0032 東京都港区六本木3丁目16番12号六本木KSビル5F
           </p>
           <p className="text-gray-400 text-sm leading-relaxed max-w-md">
             データサイエンスとAI技術で、マーケティングの不確実性を排除し、企業の成長を加速させるパートナーです。
@@ -35,7 +35,7 @@ const Footer = () => (
 
       {/* コピーライトバー (変更なし) */}
       <div className="flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 text-xs text-gray-500">
-        <p>© 2025 ad-logos. All rights reserved.</p>
+        <p>© 2025 FutureCast. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
           <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

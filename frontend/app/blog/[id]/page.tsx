@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Folder, User } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-
+import ParticleBackground from '@/components/Particle';
 
 
 // --- Configuration ---
@@ -61,15 +61,15 @@ const generateJsonLd = (post: WPPostDetail) => {
     dateModified: post.modified || post.date, // 更新日があれば
     author: [{
         '@type': 'Person',
-        name: post._embedded?.author?.[0]?.name || 'ad-logos',
+        name: post._embedded?.author?.[0]?.name || 'FutureCast',
         // url: '著者のプロフィールURLがあればここに入れる'
     }],
     publisher: {
         '@type': 'Organization',
-        name: 'ad-logos',
+        name: 'futurecast',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://ad-logos.com/icon.png' // あなたのロゴURL
+          url: 'https://futurecast.com/icon.png' // あなたのロゴURL
         }
     },
     description: stripHtml(post.excerpt.rendered).slice(0, 120) + "..."
@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const metaDescription = stripHtml(rawDescription).slice(0, 120) + "...";
 
   return {
-    title: `${pageTitle} | ad-logos`,
+    title: `${pageTitle} | FutureCast`,
     description: metaDescription, // ★これがGoogle検索結果に出ます
     openGraph: {
       title: pageTitle,
@@ -139,6 +139,7 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="fixed inset-0 z-0">
+        <ParticleBackground disableInteraction={true} />
         <div className="absolute inset-0 bg-black/70 pointer-events-none" />
       </div>
 

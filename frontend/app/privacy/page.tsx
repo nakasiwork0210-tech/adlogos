@@ -38,7 +38,7 @@ const PrivacyPage = () => {
         <div className="bg-neutral-900/30 p-8 md:p-12 rounded-2xl border border-white/5">
           
           <p className="text-gray-300 mb-12 leading-loose">
-            ad-logos（以下、「当方」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。
+            futurecast（以下、「当方」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。
           </p>
 
           <PolicySection title="第1条（個人情報）">
@@ -96,16 +96,16 @@ const PrivacyPage = () => {
             <div className="mt-6 p-6 bg-black border border-white/10 rounded-lg space-y-3">
               <div className="flex flex-col md:flex-row md:items-center">
                 <span className="text-blue-400 font-bold w-24">屋号</span>
-                <span>ad-logos</span>
+                <span>FutureCast</span>
               </div>
               {/* 住所は必須でなければ削除、あるいは「東京都」のみでも可 */}
               <div className="flex flex-col md:flex-row md:items-center">
                 <span className="text-blue-400 font-bold w-24">所在地</span>
-                <span>東京都文京区弥生2-7-11-303</span>
+                <span>東京都港区六本木3丁目16番12号六本木KSビル5F</span>
               </div>
               <div className="flex flex-col md:flex-row md:items-center">
                 <span className="text-blue-400 font-bold w-24">E-mail</span>
-                <span>info@ad-logos.com</span> 
+                <span>info@futurecast.com</span> 
                 {/* ↑ 実際のメールアドレスに変更してください */}
               </div>
             </div>

@@ -46,7 +46,7 @@ const Navbar = () => {
           className="text-2xl font-bold tracking-tighter text-white hover:text-blue-400 transition-colors relative z-50"
           onClick={() => setIsOpen(false)}
         >
-          ad-logos
+          FutureCast
         </Link>
         
         {/* デスクトップメニュー */}

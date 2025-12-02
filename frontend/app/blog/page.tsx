@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogCard from '@/components/BlogCard';
+import ParticleBackground from '@/components/Particle';
 
 // 取得する記事数
 const WP_API_URL = "https://cms.ad-logos.com/blog/wp-json/wp/v2/posts?_embed&per_page=12";
@@ -50,7 +51,7 @@ async function getPosts(): Promise<WPPost[]> {
 // ページのメタデータ（SEO用）
 export const metadata: Metadata = {
   title: 'Blog | 最新の技術情報とマーケティングコラム',
-  description: 'ad-logosのブログ一覧ページです。AI、マーケティング、技術に関する最新情報を発信しています。',
+  description: 'futurecastのブログ一覧ページです。AI、マーケティング、技術に関する最新情報を発信しています。',
 };
 
 // ★ Main Component (Server Component)
@@ -63,6 +64,7 @@ export default async function BlogPage() {
       
       {/* 背景レイヤー */}
       <div className="fixed inset-0 z-0">
+        <ParticleBackground disableInteraction={true} />
         <div className="absolute inset-0 bg-black/60 pointer-events-none" /> 
       </div>
 

@@ -3,11 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
-  ArrowRight, Brain, BarChart3, Target, MessageSquare, Layers, Loader2 
+  ArrowRight, 
+  BarChart3, 
+  PieChart, 
+  Tag, 
+  Clock, 
+  Users, 
+  TrendingUp,
+  Store,
+  ShoppingBag,
+  Loader2 
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogCard from '@/components/BlogCard';
+import ParticleBackground from '@/components/Particle';
 
 // --- Types & Constants ---
 const WP_API_URL = "https://cms.ad-logos.com/blog/wp-json/wp/v2/posts?_embed&per_page=3";
@@ -35,7 +45,6 @@ interface SectionProps {
 // --- Helper Functions ---
 const stripHtml = (html: string, limit: number = 80) => {
   if (typeof document === 'undefined') {
-    // サーバーサイド/初期レンダリング時のフォールバック (正規表現)
     return html.replace(/<[^>]*>?/gm, '').substring(0, limit) + "...";
   }
   const tmp = document.createElement("DIV");
@@ -66,15 +75,16 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/80 z-10 pointer-events-none" />
-      <div className="container mx-auto px-6 text-center z-20 relative pointer-events-none">
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 pointer-events-auto">
-          Marketing Science<br /> with AI
+      <div className="container mx-auto px-6 text-center z-20 relative pointer-events-auto">
+        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
+          Predict the Future,<br /> Optimize the Now.
         </h1>
-        <p className="text-gray-300 max-w-2xl mx-auto text-lg mb-10 pointer-events-auto">
-          「勘と経験」のマーケティングから、「データと数理」の意思決定へ。<br className="hidden md:block" />
-          データ分析に長けた東大生チームが、貴社専用のAIモデルを開発し、成長を加速します。
+        <p className="text-gray-300 max-w-2xl mx-auto text-lg mb-10 leading-relaxed">
+          <span className="font-bold text-white">FutureCast</span> は、小売・D2C領域に特化したAIソリューションパートナーです。<br className="hidden md:block" />
+            データ分析に長けた東大生エンジニアが、貴社専用の数理モデルを構築。<br className="hidden md:block" />
+            「需要予測」と「最適化」の力で、不確実なビジネスに確かな成長をもたらします。
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4 pointer-events-auto">
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link 
             href="/contact" 
             className="bg-white text-black px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]"
@@ -92,6 +102,24 @@ const Hero = () => {
     </section>
   );
 };
+
+// --- Service Card Component (New) ---
+const ServiceCard = ({ icon: Icon, title, subtitle, description }: { icon: any, title: string, subtitle: string, description: string }) => (
+  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors duration-300">
+    <div className="flex items-start gap-4">
+      <div className="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400">
+        <Icon size={24} />
+      </div>
+      <div>
+        <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
+        <p className="text-xs text-blue-400 font-mono mb-3 uppercase tracking-wider">{subtitle}</p>
+        <p className="text-gray-400 text-sm leading-relaxed">
+          {description}
+        </p>
+      </div>
+    </div>
+  </div>
+);
 
 // --- Main Component ---
 const HomeContent = () => {
@@ -121,101 +149,100 @@ const HomeContent = () => {
   return (
     <div className="bg-black min-h-screen text-white selection:bg-blue-500 selection:text-white relative">
       <div className="fixed inset-0 z-0">
+        <ParticleBackground disableInteraction={true} />
+        {/* Background can be added here if needed */}
       </div>
 
-      <div className="relative z-10 pointer-events-none">
+      
+      <div className="relative z-10">
         <div className="pointer-events-auto">
           <Navbar />
         </div>
-        
         <main>
           <Hero />
 
-          <Section id="mission" title="Mission" subtitle="数理モデルでマーケティングを科学する" className="bg-gray/40 backdrop-blur-sm pointer-events-auto">
+          <Section id="mission" title="Mission" subtitle="数理モデルでビジネスを最適化する" className="bg-gray/40 backdrop-blur-sm">
             <div className="max-w-3xl mx-auto mt-12 text-center">
               <div className="space-y-6 text-gray-400 text-lg leading-relaxed pb-20 md:pb-32">
                 <p>
-                  広告運用やマーケティング施策は、いまだに担当者の「勘」や「経験」に依存する部分が多く残されています。私たちはアカデミアで培った高度な統計解析と機械学習技術を用い、このブラックボックスを解明します。
+                  小売・流通の実店舗運営から、D2C・ECのデジタルマーケティングまで、<br />
+                  私たちは、現場に眠る膨大なデータを「収益を生む資産」に変えます。
                 </p>
                 <p>
-                  データドリブンな意思決定を支援することで、企業のマーケティングROIを最大化。持続可能な成長を実現するためのパートナーとして、最先端のAIモデリング技術を提供します。
+                  需要予測、シフト管理、広告予算配分など、複雑な変数が絡み合うビジネスの課題を、<br />
+                  数理モデルとAIの力でシンプルに解き明かし、利益最大化を実現します。
                 </p>
               </div>
             </div>
           </Section>
 
-          <Section id="models" title="Models" subtitle="開発AIモデル" className="bg-black/40 backdrop-blur-sm pointer-events-auto">
-            <div className="max-w-3xl mx-auto mt-8 space-y-12">
-               {/* Service Item 1 */}
-               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                 <div className="flex-shrink-0 w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/5">
-                   <BarChart3 className="text-blue-400" size={32} />
-                 </div>
-                 <div>
-                   <h3 className="text-2xl font-bold text-white mb-2">Predictive LTV Analysis</h3>
-                   <p className="text-gray-400 leading-relaxed text-base">
-                     顧客の初期行動データから将来のLTV（顧客生涯価値）や離脱確率を高精度に予測。ROASが合わない媒体の早期停止や、VIP顧客への先行投資判断を可能にします。
-                   </p>
-                 </div>
-               </div>
-               
-               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/5">
-                    <Target className="text-blue-400" size={32} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Hyper-Personalization</h3>
-                    <p className="text-gray-400 leading-relaxed text-base">
-                      ルールベースのセグメント配信ではなく、個々のユーザーの文脈（コンテキスト）をリアルタイムに解析。LLMを活用し、一人ひとりに最適化されたLPやメッセージを動的に生成します。
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/5">
-                    <Brain className="text-blue-400" size={32} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Marketing Mix Modeling (MMM)</h3>
-                    <p className="text-gray-400 leading-relaxed text-base">
-                      Cookie規制により計測が困難な昨今において、テレビCMやOOHを含む全マーケティング施策の貢献度を統計的に可視化。最適な予算配分シミュレーションを提供します。
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/5">
-                    <MessageSquare className="text-blue-400" size={32} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">CS AI Agent</h3>
-                    <p className="text-gray-400 leading-relaxed text-base">
-                      商品知識を学習したLLMエージェントが、Webサイト上の接客を自動化。購入前の不安を解消し、CVR（コンバージョン率）を劇的に向上させます。
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/5">
-                    <Layers className="text-blue-400" size={32} />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Data Infrastructure</h3>
-                    <p className="text-gray-400 leading-relaxed text-base">
-                      散在するマーケティングデータ（GA4, 広告媒体, CRM）を統合し、AI活用に耐えうるデータ基盤（CDP/DWH）を構築・整備します。
-                    </p>
-                  </div>
+          <Section id="models" title="Services" subtitle="提供ソリューション" className="bg-black/40 backdrop-blur-sm">
+            <div className="max-w-5xl mx-auto space-y-20">
+              
+              {/* --- Retail DX Section --- */}
+              <div>
+                <div className="flex items-center gap-3 mb-8 border-b border-white/10 pb-4">
+                  <Store className="text-blue-500" size={32} />
+                  <h3 className="text-2xl md:text-3xl font-bold">Retail DX</h3>
+                  <span className="text-gray-500 text-sm md:text-base ml-auto">実店舗・流通向け</span>
                 </div>
                 
-                <div className="mt-12 text-center pb-10">
-                   <Link href="/services" className="text-white border border-white/20 px-8 py-3 rounded-full transition-all font-medium inline-block backdrop-blur-sm hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-                     詳細な活用例を見る
-                   </Link>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <ServiceCard 
+                    icon={Tag}
+                    title="割引・廃棄ロス最適化AI"
+                    subtitle="Discount Optimization"
+                    description="「いつ、いくら割引するか」をAIが判断。賞味期限や在庫状況に基づき、利益を最大化しつつ廃棄ロスを最小化する最適な割引タイミングと割引率を算出します。"
+                  />
+                  <ServiceCard 
+                    icon={Clock}
+                    title="来客予測型シフト管理"
+                    subtitle="Shift Optimization"
+                    description="過去の売上や天候データから高精度に来客数を予測。必要な人員を適正に配置することで、人件費の無駄を削減しつつ、機会損失も防ぐ最適なシフトを作成します。"
+                  />
                 </div>
+              </div>
+
+              {/* --- D2C DX Section --- */}
+              <div>
+                <div className="flex items-center gap-3 mb-8 border-b border-white/10 pb-4">
+                  <ShoppingBag className="text-blue-500" size={32} />
+                  <h3 className="text-2xl md:text-3xl font-bold">D2C DX</h3>
+                  <span className="text-gray-500 text-sm md:text-base ml-auto">EC・通販・メーカー向け</span>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <ServiceCard 
+                    icon={PieChart}
+                    title="広告予算配分最適化 (MMM)"
+                    subtitle="Marketing Mix Modeling"
+                    description="TVCM、Web広告、SNSなど、複数のチャネルにおける広告効果を統計的に分析。年商10億〜100億円規模の事業における最適な予算配分をシミュレーションします。"
+                  />
+                  <ServiceCard 
+                    icon={Users}
+                    title="解約予測・防止CRM"
+                    subtitle="Churn Prediction"
+                    description="ユーザーの行動ログから解約リスクのある顧客を早期に検知。最適なタイミングでクーポン配布やフォローを行うことで、LTV（顧客生涯価値）を維持します。"
+                  />
+                  <ServiceCard 
+                    icon={TrendingUp}
+                    title="需要予測・在庫最適化"
+                    subtitle="Demand Forecasting"
+                    description="マーケティング施策（MMM）と連動した需要予測モデルを構築。キャンペーンによる販売増を正確に予測し、在庫切れや過剰在庫のリスクを低減します。"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-12 text-center pb-10">
+                  <Link href="/services" className="text-white border border-white/20 px-8 py-3 rounded-full transition-all font-medium inline-block backdrop-blur-sm hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    すべてのサービスを見る
+                  </Link>
+              </div>
+
             </div>
           </Section>
 
-          <Section id="blog" title="Blog" subtitle="技術ブログ" className="bg-transparent pointer-events-auto">
+          <Section id="blog" title="Blog" subtitle="技術ブログ" className="bg-transparent">
             {loading ? (
               <div className="flex justify-center pb-20">
                 <Loader2 className="animate-spin text-blue-500" size={40} />
@@ -254,9 +281,7 @@ const HomeContent = () => {
 
         </main>
 
-        <div className="pointer-events-auto">
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </div>
   );

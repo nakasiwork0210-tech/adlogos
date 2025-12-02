@@ -5,7 +5,7 @@ import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ParticleBackground from '@/components/Particle';
+import ParticleBackground from './Particle';
 
 // =================================================================
 // ★設定: お問い合わせフォームの送信先
@@ -147,7 +147,7 @@ const ContactContent = () => {
                           </div>
                           <div>
                             <label htmlFor="company" className="block text-sm font-bold text-gray-300 mb-2">会社名</label>
-                            <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} className={inputClasses} placeholder="株式会社ad-logos" />
+                            <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} className={inputClasses} placeholder="株式会社FutureCast" />
                           </div>
                         </div>
 
@@ -228,7 +228,7 @@ const ContactContent = () => {
                       </div>
                       <div>
                         <h4 className="font-bold mb-1 group-hover:text-blue-400 transition-colors">Email</h4>
-                        <p className="text-gray-400 text-sm break-all">info@ad-logos.com</p>
+                        <p className="text-gray-400 text-sm break-all">info@futurecast.com</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4 group">
@@ -237,7 +237,7 @@ const ContactContent = () => {
                       </div>
                       <div>
                         <h4 className="font-bold mb-1 group-hover:text-blue-400 transition-colors">Address</h4>
-                        <p className="text-gray-400 text-sm">〒113-0032<br/>東京都文京区弥生2-7-11-303</p>
+                        <p className="text-gray-400 text-sm">〒106-0032<br/>東京都港区六本木3丁目16番12号六本木KSビル5F</p>
                       </div>
                     </div>
                   </div>
