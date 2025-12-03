@@ -22,6 +22,7 @@ export const dynamic = 'force-dynamic';
 // --- Types & Constants ---
 const WP_API_URL = "https://cms.futurecast.jp/blog/wp-json/wp/v2/posts?_embed&per_page=3";
 
+
 interface WPPost {
   id: number;
   date: string;
