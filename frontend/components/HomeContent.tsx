@@ -18,7 +18,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogCard from '@/components/BlogCard';
 import ParticleBackground from '@/components/Particle';
-
+export const dynamic = 'force-dynamic';
 // --- Types & Constants ---
 const WP_API_URL = "https://cms.futurecast.jp/blog/wp-json/wp/v2/posts?_embed&per_page=3";
 
