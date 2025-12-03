@@ -33,21 +33,15 @@ const formatDate = (dateString: string) => {
 };
 
 // データの取得関数 (Server Side)
-// データの取得関数 (Server Side)
 async function getPosts(): Promise<WPPost[]> {
   // ISR: 3600秒（1時間）ごとにデータを再取得
   const res = await fetch(WP_API_URL, {
-    method: 'GET',
-    headers: {
-      // サーバーからのアクセスでもブラウザからのアクセスに見せる
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    },
     next: { revalidate: 3600 } 
   });
 
   if (!res.ok) {
-    // サーバーサイドでのデバッグ用にステータスを出力
-    console.error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
+    // エラー時は空配列を返すか、エラー画面を出す
+    console.error('Failed to fetch posts');
     return [];
   }
 
