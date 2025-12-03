@@ -20,7 +20,7 @@ import BlogCard from '@/components/BlogCard';
 import ParticleBackground from '@/components/Particle';
 
 // --- Types & Constants ---
-const WP_API_URL = "https://cms.ad-logos.com/blog/wp-json/wp/v2/posts?_embed&per_page=3";
+const WP_API_URL = "https://cms.futurecast.jp/blog/wp-json/wp/v2/posts?_embed&per_page=3";
 
 interface WPPost {
   id: number;

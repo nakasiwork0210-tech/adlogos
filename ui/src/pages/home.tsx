@@ -2,12 +2,12 @@ import {
   ArrowRight,
   Brain, BarChart3, Target, MessageSquare, Layers, Loader2 
 } from 'lucide-react';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import BlogCard from '../components/BlogCard';
-import ParticleBackground from '@/components/Particle'; // ファイル名修正(Particle -> ParticleBackground)
+import ParticleBackground from '../components/Particle'; // ファイル名修正(Particle -> ParticleBackground)
 
 // --- Types ---
 const WP_API_URL = "https://cms.ad-logos.com/blog/wp-json/wp/v2/posts?_embed&per_page=3";
@@ -91,13 +91,21 @@ const Hero = () => {
         
         <div className="flex flex-col sm:flex-row justify-center gap-4 pointer-events-auto">
           {/* ★変更: Primary Button (白 -> 青) */}
-          <a href="/contact" className="bg-white text-black px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]">
+          {/* 無料相談ボタン */}
+          <Link 
+            to="/contact" 
+            className="bg-white text-black px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]"
+          >
             無料相談・デモ依頼 <ArrowRight size={20} />
-          </a>
-          {/* ★変更: Secondary Button (透明 -> 白) */}
-          <a href="/services" className="border border-white/20 text-white px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center justify-center hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+          </Link>
+
+          {/* サービス詳細ボタン */}
+          <Link 
+            to="/services" 
+            className="border border-white/20 text-white px-8 py-3 rounded-full font-bold text-lg transition-all flex items-center justify-center hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+          >
             サービス詳細
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -228,9 +236,9 @@ const HomePage = () => {
                 
                 <div className="mt-12 text-center pb-10">
                     {/* ★変更: 詳細ボタン (透明 -> 白) */}
-                    <a href="/services" className="text-white border border-white/20 px-8 py-3 rounded-full transition-all font-medium inline-block backdrop-blur-sm hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                    <Link to="/services" className="text-white border border-white/20 px-8 py-3 rounded-full transition-all font-medium inline-block backdrop-blur-sm hover:bg-white hover:text-black hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                       詳細な活用例を見る
-                    </a>
+                    </Link>
                 </div>
             </div>
           </Section>

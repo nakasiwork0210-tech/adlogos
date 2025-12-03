@@ -8,7 +8,7 @@ import ParticleBackground from '@/components/Particle';
 
 
 // --- Configuration ---
-const WP_API_BASE = "https://cms.ad-logos.com/blog/wp-json/wp/v2";
+const WP_API_BASE = "https://cms.futurecast.jp/blog/wp-json/wp/v2";
 
 // --- Types ---
 interface WPPostDetail {

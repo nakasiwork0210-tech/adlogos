@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send, ArrowRight, Loader2, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ParticleBackground from '../components/Particle';
@@ -195,7 +196,7 @@ const ContactPage = () => {
                             )}
                           </button>
                           <p className="text-xs text-gray-500 text-center mt-4">
-                            ※ お客様の個人情報は、<a href="/privacy" className="underline hover:text-white transition-colors">プライバシーポリシー</a>に基づき適切に管理いたします。
+                            ※ お客様の個人情報は、<Link to="/privacy" className="underline hover:text-white transition-colors">プライバシーポリシー</Link>に基づき適切に管理いたします。
                           </p>
                         </div>
 

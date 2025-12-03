@@ -28,5 +28,5 @@
       ]
     }
   },
-  "include": ["src"]
+  "include": ["src", "src/components/BlogCard.tsx", "src/components/Footer.tsx", "src/components/Navbar.tsx", "src/components/Particle.tsx", "src/components/ScrollToTop.tsx"]
 }

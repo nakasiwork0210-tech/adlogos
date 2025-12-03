@@ -145,9 +145,6 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ disableInteract
 
             const force = this.mouseIntensity;
             this.targetSize = this.baseSize * (1 + force * (CONFIG.interactionStrength - 1));
-            
-            const angle = Math.atan2(dy, dx);
-            const moveDistance = force * 15; 
             this.currentPos.z += (200 * force - this.currentPos.z) * 0.1; 
 
             const boost = 0.25 * force;

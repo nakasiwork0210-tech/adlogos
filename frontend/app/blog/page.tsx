@@ -6,7 +6,7 @@ import BlogCard from '@/components/BlogCard';
 import ParticleBackground from '@/components/Particle';
 
 // 取得する記事数
-const WP_API_URL = "https://cms.ad-logos.com/blog/wp-json/wp/v2/posts?_embed&per_page=12";
+const WP_API_URL = "https://cms.futurecast.jp/blog/wp-json/wp/v2/posts?_embed&per_page=12";
 
 // 型定義
 interface WPPost {

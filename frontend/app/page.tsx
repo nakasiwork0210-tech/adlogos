@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'futurecast | AIとマーケティングの未来を創る',
     description: 'AI技術でマーケティングを進化させる。futurecastの公式サイトです。',
-    images: ['https://futurecast.com/og-image.png'],
+    images: ['https://futurecast.jp/og-image.png'],
   },
 };
 

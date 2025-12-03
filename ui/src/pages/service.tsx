@@ -1,4 +1,4 @@
-import { 
+import {
   ArrowRight,
   Brain, BarChart3, Target, MessageSquare, Layers,
   CheckCircle2, ChevronRight
@@ -6,7 +6,8 @@ import {
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 // パーティクルコンポーネントをインポート
-import ParticleBackground from '../components/Particle'; 
+import ParticleBackground from '../components/Particle';
+import { Link } from 'react-router-dom';
 
 // --- Types ---
 interface SectionProps {
@@ -20,8 +21,6 @@ interface SectionProps {
 // --- Shared Components ---
 
 // セクションコンポーネント
-// 背景色は親側で制御するため、デフォルトの背景色は指定しませんが、
-// 透過させたい場合は bg-transparent や bg-black/xx を className で渡します。
 const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, className = "" }) => (
   <section id={id} className={`py-12 md:py-20 ${className}`}>
     <div className="container mx-auto px-6">
@@ -35,7 +34,6 @@ const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, classN
 );
 
 // ヘッダーコンポーネント
-// 【変更点】背景を不透明なグラデーションから、半透明＋ぼかしに変更し、パーティクルが透けるようにしました。
 const PageHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <div className="pt-32 pb-20  text-center px-6 border-b border-white/5">
     <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h1>
@@ -43,13 +41,50 @@ const PageHeader = ({ title, subtitle }: { title: string; subtitle: string }) =>
   </div>
 );
 
+// 【変更】ワークフローを6ステップに変更
+// ... (imports)
+
+// 【修正】ワークフローのデータに price を追加
 const workflowSteps = [
-  { number: '01', title: 'ヒアリング・データ診断', description: '課題感の共有と、保有データの量・質を確認。AI開発の実現可能性を初期診断します。' },
-  { number: '02', title: 'ご提案・ロードマップ策定', description: '最適なAIモデルと期待される効果、実用化までの具体的なステップをご提案します。' },
-  { number: '03', title: 'PoC (概念実証)', description: '小規模なデータでモデルを開発。精度やビジネスインパクトを検証し、投資判断を行います。' },
-  { number: '04', title: '本開発・実装', description: '実運用に耐えうる精度までモデルを改善し、既存システムへの組み込みを行います。' },
-  { number: '05', title: '運用・継続的改善', description: '導入後の効果測定を実施。データの変化に合わせてモデルを再学習させ、精度を維持します。' },
+  { 
+    number: '01', 
+    title: 'ヒアリング', 
+    price: '無料', // 追加
+    description: '事業課題、KPI、保有データの状況を詳しくヒアリング。AI導入の目的とゴールを明確化します。' 
+  },
+  { 
+    number: '02', 
+    title: 'データ分析', 
+    price: '無料~10万円', // 追加
+    description: '受領データを解析(EDA)し、データの質・量・特徴を診断、レポートを作成。AI活用の可能性と期待値を算出します。' 
+  },
+  { 
+    number: '03', 
+    title: 'データクレンジング', 
+    price: '無料~40万円', // 追加
+    description: '名寄せ、欠損値補完、外れ値処理などを行い、AIが学習可能な状態へデータを整備・加工します。' 
+  },
+  { 
+    number: '04', 
+    title: 'PoC (概念実証) 開発', 
+    price: '30万円〜40万円', // 追加
+    description: 'スモールスタートで初期モデルを構築。実際のデータを用いて精度検証を行い、ROIを試算します。' 
+  },
+  { 
+    number: '05', 
+    title: 'AIモデル本開発', 
+    price: '70万円〜200万円', // 追加
+    description: '本番環境で稼働する高精度モデルを開発し、貴社システムやオペレーションへの組み込みを行います。' 
+  },
+  { 
+    number: '06', 
+    title: '保守運用・改善', 
+    price: '月額 10万円〜', // 追加
+    description: '導入後の精度監視を実施。データの変化に合わせてモデルを再学習させ、精度を維持・向上させます。' 
+  },
 ];
+
+// 【削除】const pricingPlans = [ ... ] は不要になるので削除してください
 
 const modelDetails = [
   {
@@ -89,6 +124,8 @@ const modelDetails = [
   },
 ];
 
+
+
 // --- Main Page Component ---
 const ServicePage = () => {
   return (
@@ -96,58 +133,62 @@ const ServicePage = () => {
       
       {/* ★ 背景レイヤー (固定) */}
       <div className="fixed inset-0 z-0">
-        {/* パーティクル本体 */}
         <ParticleBackground disableInteraction={true} />
-        
-        {/* ★ 黒い布（オーバーレイ） */}
-        {/* bg-black/70 で70%の濃さの黒をかぶせています。濃すぎる場合は /50 などに調整してください */}
-        <div className="absolute inset-0 bg-black/50 pointer-events-none" /> 
+        <div className="absolute inset-0 bg-black/50 pointer-events-none" />
       </div>
 
-      {/* ★ コンテンツレイヤー (relative z-10 で背景の上に配置) */}
+      {/* ★ コンテンツレイヤー */}
       <div className="relative z-10">
         <Navbar />
         
         <main>
-          <PageHeader 
-            title="Our Services" 
-            subtitle="アカデミアの知見と最新のAI技術で、企業のマーケティング課題を解決します。" 
+          <PageHeader
+            title="Our Services"
+            subtitle="アカデミアの知見と最新のAI技術で、企業のマーケティング課題を解決します。"
           />
 
           {/* Workflow Section */}
-          {/* bg-black/20 で少しだけ背景を暗くし、文字を見やすくしつつ透けさせる */}
-          <Section id="workflow" title="Workflow" subtitle="導入までの流れ" className="bg-black/20 backdrop-blur-sm">
-            <div className="max-w-5xl mx-auto mt-16">
-              <div className="grid md:grid-cols-5 gap-8 md:gap-4 relative">
+          {/* Workflow Section */}
+          <Section id="workflow" title="Workflow" subtitle="導入までの流れと費用感" className="bg-black/20 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto mt-16">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8 relative">
                 {workflowSteps.map((step, index) => (
-                  <div key={step.number} className="relative flex flex-col items-center text-center md:block md:text-left group">
-                    <div className="mb-4 flex items-center justify-center md:justify-start">
-                      <span className="text-5xl font-bold text-blue-500/30 group-hover:text-blue-500/50 transition-colors">{step.number}</span>
+                  <div key={step.number} className="relative flex flex-col items-center text-center group">
+                    <div className="mb-4 flex items-center justify-center">
+                      <span className="text-4xl font-bold text-blue-500  transition-colors">{step.number}</span>
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+                    
+                    <h3 className="text-lg font-bold text-white mb-1 flex items-center justify-center">{step.title}</h3>
+                    
+                    {/* 【追加】価格表示部分 */}
+                    <div className="mb-3 text-blue-400 font-bold text-sm bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                      目安: {step.price}
+                    </div>
 
+                    <p className="text-gray-400 text-sm leading-relaxed text-left md:text-center">{step.description}</p>
+                    
+                    {/* デスクトップ向けの矢印 */}
                     {index < workflowSteps.length - 1 && (
-                      <div className="hidden md:block absolute top-8 -right-4 text-gray-600 z-10">
+                      <div className="hidden xl:block absolute top-8 -right-1/2 w-full text-gray-600/50 z-0 pointer-events-none flex justify-center">
                         <ChevronRight size={24} />
                       </div>
                     )}
+                    {/* モバイル・タブレット向けの矢印 */}
                     {index < workflowSteps.length - 1 && (
-                      <div className="md:hidden flex justify-center my-4 text-gray-600">
-                          <ChevronRight size={24} className="rotate-90" />
+                      <div className="xl:hidden flex justify-center mt-6 text-gray-600/50">
+                          <ChevronRight size={24} className="rotate-90 md:rotate-0 lg:rotate-0" />
                       </div>
                     )}
                   </div>
                 ))}
               </div>
-               <div className="mt-12 text-center">
-                <p className="text-gray-500 text-sm">※ プロジェクトの規模や要件により、期間やステップは変動します。</p>
+              <div className="mt-16 text-center border-t border-white/5 pt-8">
+                <p className="text-gray-500 text-sm">※ プロジェクトの規模や要件により、期間や費用は変動します。</p>
               </div>
             </div>
           </Section>
 
           {/* Models Detail Section */}
-          {/* 背景は透明（大元の黒い布任せ）でも良いですし、区切りのために薄く色を入れてもOK */}
           <Section id="models-detail" title="Our Models & Examples" subtitle="開発モデルと活用例" className="bg-black/20 backdrop-blur-sm">
             <div className="max-w-4xl mx-auto mt-12 space-y-20">
               
@@ -187,16 +228,15 @@ const ServicePage = () => {
           </Section>
 
           {/* CTA Section */}
-          {/* 下部のCTAは少し目立たせるために、うっすらグラデーションを入れる */}
           <Section id="contact-cta" title="Contact" subtitle="AI開発のご相談はこちら" className="bg-gradient-to-t from-blue-950/40 to-transparent backdrop-blur-sm">
             <div className="text-center max-w-2xl mx-auto mt-8">
               <p className="text-gray-300 mb-8 text-lg">
                 貴社のデータ環境や課題に合わせて、最適なAI開発プランをご提案します。<br />
                 まずはお気軽にお問い合わせください。
               </p>
-              <a href="/contact" className="bg-white text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all inline-flex items-center gap-2">
+              <Link to="/contact" className="bg-white !text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all inline-flex items-center gap-2">
                 お問い合わせフォームへ <ArrowRight size={20} />
-              </a>
+              </Link>
             </div>
           </Section>
 
@@ -209,6 +249,5 @@ const ServicePage = () => {
 }
 
 export default ServicePage;
-
 
 
